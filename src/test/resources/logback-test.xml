@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="TEST_RESULTS_CONSOLE_LOG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date%n%yellow(%msg%n)</pattern>
+        </encoder>
+    </appender>
+
+    <root level="TRACE">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <logger name="com.qthegamep" level="TRACE" additivity="true"/>
+
+    <logger name="TEST_RESULT_LOGGER" level="INFO" additivity="false">
+        <appender-ref ref="TEST_RESULTS_CONSOLE_LOG"/>
+    </logger>
+</configuration>

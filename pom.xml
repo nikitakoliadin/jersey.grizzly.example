@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.qthegamep</groupId>
+    <artifactId>jersey.grizzly.example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <url>https://github.com/qThegamEp/jersey.grizzly.example</url>
+
+    <name>jersey.grizzly.example</name>
+
+    <developers>
+        <developer>
+            <id>qThegamEp</id>
+            <name>Nikita Koliadin</name>
+            <email>qThegamEp@gmail.com</email>
+            <url>https://github.com/qThegamEp/</url>
+            <timezone>Ukraine/Dnipro</timezone>
+        </developer>
+    </developers>
+
+    <prerequisites>
+        <maven>3.3.9</maven>
+    </prerequisites>
+
+    <properties>
+        <!-- Java -->
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Clean plugin -->
+        <clean-plugin.version>3.1.0</clean-plugin.version>
+
+        <!-- Resources plugin -->
+        <resources-plugin.version>3.1.0</resources-plugin.version>
+
+        <!-- Compiler plugin -->
+        <compiler-plugin.version>3.6.1</compiler-plugin.version>
+        <compiler-plugin.endorseddirs>${project.build.directory}/endorsed</compiler-plugin.endorseddirs>
+
+        <!-- Surefire plugin -->
+        <surefire-plugin.version>2.22.0</surefire-plugin.version>
+        <surefire-plugin.testFailureIgnore>false</surefire-plugin.testFailureIgnore>
+        <surefire-plugin.argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+        </surefire-plugin.argLine>
+
+        <!-- Assembly plugin -->
+        <assembly-plugin.version>3.1.0</assembly-plugin.version>
+        <assembly-plugin.finalName>jersey.grizzly.example</assembly-plugin.finalName>
+        <assembly-plugin.mainClass>com.qthegamep.jersey.grizzly.example.Application</assembly-plugin.mainClass>
+        <assembly-plugin.appendAssemblyId>false</assembly-plugin.appendAssemblyId>
+
+        <!-- JAR plugin -->
+        <jar-plugin.version>3.1.0</jar-plugin.version>
+
+        <!-- Install plugin -->
+        <install-plugin.version>3.0.0-M1</install-plugin.version>
+
+        <!-- Site plugin -->
+        <site-plugin.version>3.7.1</site-plugin.version>
+
+        <!-- Report plugin -->
+        <report-plugin.version>3.0.0</report-plugin.version>
+
+        <!-- Deploy plugin -->
+        <deploy-plugin.version>3.0.0-M1</deploy-plugin.version>
+
+        <!-- Dependency Plugin -->
+        <dependency-plugin.version>2.6</dependency-plugin.version>
+        <dependency-plugin.overWriteReleases>false</dependency-plugin.overWriteReleases>
+        <dependency-plugin.overWriteSnapshots>false</dependency-plugin.overWriteSnapshots>
+        <dependency-plugin.overWriteIfNewer>true</dependency-plugin.overWriteIfNewer>
+        <dependency-plugin.outputDirectory>${compiler-plugin.endorseddirs}</dependency-plugin.outputDirectory>
+        <dependency-plugin.silent>true</dependency-plugin.silent>
+        <dependency-plugin.javaee-endorsed-api.version>7.0</dependency-plugin.javaee-endorsed-api.version>
+
+        <!-- JaCoCo plugin -->
+        <jacoco-plugin.version>0.8.2</jacoco-plugin.version>
+
+        <!-- Pitest plugin -->
+        <pitest-plugin.version>1.4.3</pitest-plugin.version>
+        <pitest-plugin.verbose>false</pitest-plugin.verbose>
+        <pitest-plugin.threads>4</pitest-plugin.threads>
+        <pitest-plugin.timeoutConstant>300000</pitest-plugin.timeoutConstant>
+        <pitest-plugin.skip>true</pitest-plugin.skip>
+
+        <!-- Allure plugin -->
+        <allure-plugin.version>2.9</allure-plugin.version>
+        <allure-plugin.reportVersion>2.7.0</allure-plugin.reportVersion>
+
+        <!-- Versions plugin -->
+        <versions-plugin.version>2.7</versions-plugin.version>
+        <versions-plugin.rulesUri>file://${user.dir}/src/main/resources/version/rules.xml</versions-plugin.rulesUri>
+        <versions-plugin.generateBackupPoms>false</versions-plugin.generateBackupPoms>
+
+        <!-- AspectJ -->
+        <aspectj.version>1.9.1</aspectj.version>
+
+        <!-- Annotations -->
+        <annotations.jetbrains-annotations.version>16.0.3</annotations.jetbrains-annotations.version>
+        <annotations.lombok.version>1.18.4</annotations.lombok.version>
+
+        <!-- Test -->
+        <test.junit.version>4.12</test.junit.version>
+        <test.assertj-core.version>3.11.1</test.assertj-core.version>
+        <test.mockito-core.version>2.23.0</test.mockito-core.version>
+        <test.jersey-test-framework.version>2.25.1</test.jersey-test-framework.version>
+
+        <!-- Report -->
+        <report.allure.version>2.7.0</report.allure.version>
+
+        <!-- Log -->
+        <log.slf4j.version>1.7.25</log.slf4j.version>
+        <log.logback.version>1.2.3</log.logback.version>
+
+        <!-- GlassFish -->
+        <glassfish.jersey-container-grizzly2-http.version>2.25.1</glassfish.jersey-container-grizzly2-http.version>
+        <glassfish.jersey-media-multipart.version>2.19</glassfish.jersey-media-multipart.version>
+
+        <!-- Project Grizzly -->
+        <project-grizzly.grizzly-http-server.version>2.3.28</project-grizzly.grizzly-http-server.version>
+        <project-grizzly.grizzly-http-servlet.version>2.3.28</project-grizzly.grizzly-http-servlet.version>
+        <project-grizzly.grizzly-webserver.version>1.9.64</project-grizzly.grizzly-webserver.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Clean plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>${clean-plugin.version}</version>
+            </plugin>
+
+            <!-- Resources plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${resources-plugin.version}</version>
+            </plugin>
+
+            <!-- Compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <compilerArguments>
+                        <endorseddirs>${compiler-plugin.endorseddirs}</endorseddirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+
+            <!-- Surefire plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire-plugin.version}</version>
+                <configuration>
+                    <testFailureIgnore>${surefire-plugin.testFailureIgnore}</testFailureIgnore>
+                    <argLine>@{argLine} ${surefire-plugin.argLine}</argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit4.AllureJunit4</value>
+                        </property>
+                    </properties>
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${project.build.directory}/allure-results</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- Assembly plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${assembly-plugin.version}</version>
+                <configuration>
+                    <finalName>${assembly-plugin.finalName}</finalName>
+                    <archive>
+                        <manifest>
+                            <mainClass>${assembly-plugin.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <appendAssemblyId>${assembly-plugin.appendAssemblyId}</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- JAR plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${jar-plugin.version}</version>
+            </plugin>
+
+            <!-- Install plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>${install-plugin.version}</version>
+            </plugin>
+
+            <!-- Site plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${site-plugin.version}</version>
+            </plugin>
+
+            <!-- Report plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${report-plugin.version}</version>
+            </plugin>
+
+            <!-- Deploy plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${deploy-plugin.version}</version>
+            </plugin>
+
+            <!-- Dependency plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${dependency-plugin.version}</version>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/lib/</outputDirectory>
+                    <overWriteReleases>${dependency-plugin.overWriteReleases}</overWriteReleases>
+                    <overWriteSnapshots>${dependency-plugin.overWriteSnapshots}</overWriteSnapshots>
+                    <overWriteIfNewer>${dependency-plugin.overWriteIfNewer}</overWriteIfNewer>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${dependency-plugin.outputDirectory}</outputDirectory>
+                            <silent>${dependency-plugin.silent}</silent>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>javax</groupId>
+                                    <artifactId>javaee-endorsed-api</artifactId>
+                                    <version>${dependency-plugin.javaee-endorsed-api.version}</version>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- JaCoCo plugin -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Pitest plugin -->
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest-plugin.version}</version>
+                <configuration>
+                    <verbose>${pitest-plugin.verbose}</verbose>
+                    <threads>${pitest-plugin.threads}</threads>
+                    <timeoutConstant>${pitest-plugin.timeoutConstant}</timeoutConstant>
+                    <skip>${pitest-plugin.skip}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pitest</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Allure plugin -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-plugin.version}</version>
+                <configuration>
+                    <reportVersion>${allure-plugin.reportVersion}</reportVersion>
+                </configuration>
+            </plugin>
+
+            <!-- Versions plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-plugin.version}</version>
+                <configuration>
+                    <rulesUri>${versions-plugin.rulesUri}</rulesUri>
+                    <generateBackupPoms>${versions-plugin.generateBackupPoms}</generateBackupPoms>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- Annotations -->
+        <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>${annotations.jetbrains-annotations.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${annotations.lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Test -->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${test.junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${test.assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${test.mockito-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.test-framework/jersey-test-framework-core -->
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework</groupId>
+            <artifactId>jersey-test-framework-core</artifactId>
+            <version>${test.jersey-test-framework.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.test-framework.providers/jersey-test-framework-provider-grizzly2 -->
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+            <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
+            <version>${test.jersey-test-framework.version}</version>
+        </dependency>
+
+        <!-- Report -->
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>${report.allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Log -->
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${log.slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/jcl-over-slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${log.slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/jul-to-slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>${log.slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${log.logback.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${log.logback.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- GlassFish -->
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-grizzly2-http -->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
+            <version>${glassfish.jersey-container-grizzly2-http.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-multipart -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>${glassfish.jersey-media-multipart.version}</version>
+        </dependency>
+
+        <!-- Project Grizzly -->
+        <!-- https://mvnrepository.com/artifact/org.glassfish.grizzly/grizzly-http-server -->
+        <dependency>
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-http-server</artifactId>
+            <version>${project-grizzly.grizzly-http-server.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.grizzly/grizzly-http-servlet -->
+        <dependency>
+            <groupId>org.glassfish.grizzly</groupId>
+            <artifactId>grizzly-http-servlet</artifactId>
+            <version>${project-grizzly.grizzly-http-servlet.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.sun.grizzly/grizzly-servlet-webserver -->
+        <dependency>
+            <groupId>com.sun.grizzly</groupId>
+            <artifactId>grizzly-webserver</artifactId>
+            <version>${project-grizzly.grizzly-webserver.version}</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <!-- Activate pitest profile -->
+        <profile>
+            <id>activate-pitest</id>
+
+            <properties>
+                <pitest-plugin.skip>false</pitest-plugin.skip>
+            </properties>
+        </profile>
+    </profiles>
+</project>
