@@ -20,4 +20,15 @@ public class MainResourceImpl implements MainResource {
                 .entity(entity)
                 .build();
     }
+
+    @Override
+    @GET
+    @Path("/info")
+    @Produces("text/plain; charset=UTF-8")
+    public Response getInfo() {
+        val entity = "Created by qThegamEp";
+        return Response.status(Response.Status.OK)
+                .entity(entity)
+                .build();
+    }
 }
